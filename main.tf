@@ -70,6 +70,8 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket" {
 resource "aws_dynamodb_table" "dynamodb_table" {
   name         = "${local.namespace}-state-lock"
   hash_key     = "LockID"
+  read_capacity  = 1
+  write_capacity = 1
   #ci dessous pas inclus dans free tier @AWS, valeur par defaut "PROVISIONED"
   #billing_mode = "PAY_PER_REQUEST"
   attribute {
